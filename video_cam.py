@@ -6,7 +6,7 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
 
 while True:									# loop till true
-	ret,frame=cap.read()					# ret --> true or false  
+	ret,frame=cap.read()					# ret --> true or false
 	if ret ==True:										#frame= captures frame through camera
 		out.write(frame)
 		gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)		# convert colors
