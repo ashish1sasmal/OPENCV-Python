@@ -6,7 +6,7 @@ img2 = cv2.imread("app.jpg")
 
 
 img2 = cv2.resize(img2,img1.shape[0:2][::-1])
-
+print(img1.shape,img1.shape[0:2][::-1])
 # img3 = cv2.addWeighted(img1,0.5,img2,0.3,0)
 # cv2.imshow("wighted image",img3)
 
