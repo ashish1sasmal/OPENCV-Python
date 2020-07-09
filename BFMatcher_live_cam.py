@@ -8,9 +8,9 @@ img2 = cv2.imread('liveex.jpg',0) # trainImage
 
 cv2.namedWindow('BFM', cv2.WINDOW_NORMAL)
 
-orb = cv2.xfeatures2d.SIFT_create()
+orb = cv2.ORB_create()
 kp2, des2 = orb.detectAndCompute(img2,None)
-bf = cv2.BFMatcher()
+bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck = True)
 # Initiate SIFT detector
 
 
@@ -25,14 +25,14 @@ while True:
 
 
     # Match descriptors.
-    matches = bf.knnMatch(des1,des2,k=2)
+    matches = bf.match(des1,des2)
 
-    good = []
-    for m,n in matches:
-        if m.distance < 0.75*n.distance:
-            good.append([m])
+    # Sort them in the order of their distance.
+    matches = sorted(matches,key=lambda x:x.distance)
 
-    img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,good,None,flags=2)
+    # Draw first 10 matches.
+    img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches[:10],None, flags=2)
+
     cv2.imshow("BFM",img3)
 
     k = cv2.waitKey(1) & 0xFF
