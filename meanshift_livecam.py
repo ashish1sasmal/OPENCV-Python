@@ -7,15 +7,16 @@ cv2.namedWindow("MeanShift",cv2.WINDOW_NORMAL)
 
 
 # setup initial location of window
-r,h,c,w = 0,872,0,813
+r,h,c,w = 266,515,193,243
 
 
 img = cv2.imread("obj.jpg")
 
-# cv2.rectangle(frame, (2467,1046), (2832,1296), (0,255,0),2)
+# cv2.rectangle(img, (c,r), (c+w,r+h), (0,255,0),2)
 #
-# cv2.imshow("MeanShift",frame)
+
 roi = img[r:r+h, c:c+w]
+# cv2.imshow("MeanShift",img)
 
 #
 track_window = (c,r,w,h)

@@ -2,17 +2,23 @@
 
 import numpy as np
 import cv2
-from live_cam import live
 
 cv2.namedWindow("MeanShift",cv2.WINDOW_NORMAL)
+cap = cv2.VideoCapture('car2.mp4')
 
-img = cv2.imread("obj.jpg")
+# take first frame of the video
+ret,frame = cap.read()
 
-r,h,c,w = 266,515,193,243
 
 
-roi = img[r:r+h , c:c+w]
+# setup initial location of window
+r,h,c,w = 1046,250,2467,365
 
+
+roi = frame[r:r+h , c:c+w]
+# cv2.rectangle(frame, (2467,1046), (2832,1296), (0,255,0),2)
+#
+# cv2.imshow("MeanShift",frame)
 
 track_window = (c,r,w,h)
 
@@ -25,7 +31,8 @@ cv2.normalize(roi_hist,roi_hist,0,255,cv2.NORM_MINMAX)
 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
 
 while(1):
-        frame = live()
+    ret ,frame = cap.read()
+    if ret == True:
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         dst = cv2.calcBackProject([hsv],[0],roi_hist,[0,180],1)
         # apply meanshift to get the new location
