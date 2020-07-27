@@ -1,10 +1,11 @@
 import urllib.request
 import cv2
 import numpy as np
+import os
 
 
 # Replace the URL with your own IPwebcam shot.jpg IP:port
-url='http://192.168.43.1:8080/shot.jpg'
+url=f"http://{os.environ.get('MOBILE_IP')}/shot.jpg"
 
 def live():
 

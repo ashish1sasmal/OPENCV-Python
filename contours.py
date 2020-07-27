@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from live_cam import live
+# from live_cam import live
 
 def nothing():
     pass
@@ -9,11 +9,11 @@ def contour(img):
     imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     ret,thresh = cv2.threshold(imgray,127,255,0)
 
-    image,contours= cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    image,contours,h= cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
 
     if len(image)>0:
-        
+
         #moments
         cnt = image[0]
         M = cv2.moments(cnt)

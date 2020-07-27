@@ -14,6 +14,8 @@ ap.add_argument("-a","--area",type = int,default = 500, help="min area")
 
 args = vars(ap.parse_args())
 
+print(args)
+
 if args.get("video",None) is None:
     vs = VideoStream(src=0).start()
     # vs = live()
@@ -23,9 +25,12 @@ else:
 
 firstFrame = None
 
+fgbg = cv2.createBackgroundSubtractorMOG2()
+
 while True:
     # frame = live()
     frame = vs.read()
+
     frame = frame if args.get("video",None) is None else frame[1]
     text = "Unoccupied"
 
@@ -40,7 +45,8 @@ while True:
         firstFrame = gray
         continue
 
-    frameDelta = cv2.absdiff(firstFrame,gray)
+    # frameDelta = cv2.absdiff(firstFrame,gray)
+    frameDelta = fgbg.apply(gray)
     thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
 
     thresh = cv2.dilate(thresh, None, iterations=2)
