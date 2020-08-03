@@ -25,6 +25,10 @@ out = img.copy()
 method = eval(methods[0])
 res  = cv2.matchTemplate(out, templ, method)
 
+loc = np.where( res >= 0.9)
+print(loc)
+
+
 min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
 
 print(min_val, max_val, min_loc, max_loc)
@@ -32,8 +36,8 @@ print(min_val, max_val, min_loc, max_loc)
 top_left = max_loc
 print(top_left)
 bottom_right = (max_loc[0]+w, max_loc[1]+h)
-
-cv2.rectangle(img, top_left, bottom_right, (0,0,255) , 2)
+#
+cv2.rectangle(img, top_left, bottom_right, 255, 2)
 
 # plt.subplot(121),plt.imshow(res)
 # plt.title('Matching Result'), plt.xticks([]), plt.yticks([])

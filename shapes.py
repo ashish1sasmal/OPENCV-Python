@@ -1,9 +1,9 @@
 import cv2
 
-img = cv2.imread('dan.jpg')
+img = cv2.imread('dan.jpg',0)
 
 img = cv2.line(img,(610,40), (880,40), (255,0,0),2)
-										
+
 							# cv2.line(img, (x1,y1), (x2,y2), (B,G,R), thickness)
 
 

@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # reads an input image
-img = cv2.imread('histo2.jpg',0)
+img = cv2.imread('tumor4.jpg',0)
 print(img.flatten())
 mask = np.zeros(img.shape[:2], np.uint8)
 mask[1294:1816, 1637:2107] = 255

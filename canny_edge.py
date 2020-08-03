@@ -8,7 +8,7 @@ def nothing():
 
 cv2.namedWindow('Image', cv2.WINDOW_NORMAL)
 
-
+# Comment
 
 
 cv2.createTrackbar('Min','Image',1,1000,nothing)
@@ -27,5 +27,5 @@ while (1):
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
         break
-        
+
 cv2.destroyAllWindows()
