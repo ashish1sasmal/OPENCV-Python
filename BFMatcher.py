@@ -1,9 +1,10 @@
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import sys
 
-img1 = cv2.imread('cheetah.jpg',0)       # queryImage
-img2 = cv2.imread('cheetah2.jpg',0) # trainImage
+img1 = cv2.imread(sys.argv[1],0)       # queryImage
+img2 = cv2.imread(sys.argv[2],0) # trainImage
 
 # Initiate SIFT detector
 orb = cv2.ORB_create()
